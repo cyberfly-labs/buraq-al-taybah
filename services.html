@@ -165,6 +165,25 @@
         </div>
     </header>
 
+    <!-- MOBILE NAV DRAWER -->
+    <div class="mobile-nav-overlay" id="mobile-overlay"></div>
+    <nav class="mobile-nav" id="mobile-nav">
+        <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+        </button>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="blog/">Blog</a></li>
+            <li><a href="index.html#contact" class="mobile-nav-cta">Get in Touch</a></li>
+        </ul>
+    </nav>
+
     <!-- ───────── PAGE HERO ───────── -->
     <section class="page-hero">
         <div class="container">
@@ -352,6 +371,18 @@
         window.addEventListener('scroll', () => {
             header.classList.toggle('scrolled', window.scrollY > 40);
         });
+
+        // Mobile Nav Toggle
+        const mobileBtn = document.querySelector('.mobile-menu-btn');
+        const mobileNav = document.getElementById('mobile-nav');
+        const mobileOverlay = document.getElementById('mobile-overlay');
+        const mobileClose = document.getElementById('mobile-nav-close');
+        function openMobileNav() { mobileNav.classList.add('active'); mobileOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeMobileNav() { mobileNav.classList.remove('active'); mobileOverlay.classList.remove('active'); document.body.style.overflow = ''; }
+        mobileBtn.addEventListener('click', openMobileNav);
+        mobileOverlay.addEventListener('click', closeMobileNav);
+        mobileClose.addEventListener('click', closeMobileNav);
+        document.querySelectorAll('.mobile-nav-links a').forEach(link => { link.addEventListener('click', closeMobileNav); });
     </script>
 </body>
 
