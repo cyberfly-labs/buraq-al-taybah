@@ -41,6 +41,10 @@
     <meta name="geo.region" content="AE-DU">
     <meta name="geo.placename" content="Dubai">
 
+    <!-- Technical SEO -->
+    <meta name="theme-color" content="#0b2c4d">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+
     <!-- Stylesheet -->
     <link rel="stylesheet" href="assets/style2.css">
 
@@ -48,7 +52,7 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "LocalBusiness",
+        "@type": "ProfessionalService",
         "name": "Buraq Al Taybah Engineering & Technical Services L.L.C",
         "alternateName": "براق الطيبة للخدمات الفنية",
         "description": "Dubai-based engineering company delivering MEP, electromechanical automation, facility management, interior fit-out, civil works, commercial kitchen equipment, carpentry, and swimming pool services.",
@@ -509,6 +513,83 @@
         </div>
     </section>
 
+    <!-- ───────── FAQ SECTION ───────── -->
+    <section class="section bg-white" id="faq">
+        <div class="container">
+            <p class="section-badge">FAQ</p>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">What MEP services do you provide in Dubai?</button>
+                    <div class="faq-answer">
+                        <p>We provide comprehensive MEP contracting services including HVAC installation, electrical
+                            systems, plumbing, fire fighting systems, and full mechanical-electrical-plumbing
+                            installation, testing, commissioning, and annual maintenance contracts (AMC) across Dubai
+                            and the UAE.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Do you provide AMC maintenance contracts?</button>
+                    <div class="faq-answer">
+                        <p>Yes, we provide annual maintenance contracts (AMC) for commercial, residential, and
+                            industrial clients. Our AMC packages cover HVAC, electrical, plumbing, fire fighting,
+                            kitchen equipment, and swimming pool systems with guaranteed response times and scheduled
+                            preventive maintenance visits.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Do you handle BMS and PLC automation systems?</button>
+                    <div class="faq-answer">
+                        <p>Yes, we install and maintain BMS (Building Management Systems), GRMS/GRMG (Guest Room
+                            Management Systems), and PLC-based automation systems. Our solutions cover energy
+                            management, environmental controls, access integration, and centralized monitoring for
+                            commercial buildings and hotels.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">What types of properties do you serve?</button>
+                    <div class="faq-answer">
+                        <p>We serve residential villas, apartment buildings, commercial offices, hotels & resorts,
+                            restaurants & cafés, retail shops, warehouses, industrial facilities, and recreational
+                            centers across Dubai and the wider UAE.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Do you provide interior fit-out and renovation services?</button>
+                    <div class="faq-answer">
+                        <p>Yes, we handle turnkey interior fit-out projects including gypsum partitioning, false
+                            ceilings, painting, tiling, flooring, joinery, and complete renovation projects for both
+                            residential and commercial spaces.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">How can I request a quotation or consultation?</button>
+                    <div class="faq-answer">
+                        <p>You can contact us via phone at +971 50 394 2123, email at info@buraqaltaybah.com, or fill
+                            out the inquiry form on our website. Our team typically responds within 24 hours with a
+                            detailed consultation and quotation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            { "@type": "Question", "name": "What MEP services do you provide in Dubai?", "acceptedAnswer": { "@type": "Answer", "text": "We provide comprehensive MEP contracting services including HVAC installation, electrical systems, plumbing, fire fighting systems, and full mechanical-electrical-plumbing installation, testing, commissioning, and annual maintenance contracts (AMC) across Dubai and the UAE." } },
+            { "@type": "Question", "name": "Do you provide AMC maintenance contracts?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, we provide annual maintenance contracts (AMC) for commercial, residential, and industrial clients. Our AMC packages cover HVAC, electrical, plumbing, fire fighting, kitchen equipment, and swimming pool systems with guaranteed response times and scheduled preventive maintenance visits." } },
+            { "@type": "Question", "name": "Do you handle BMS and PLC automation systems?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, we install and maintain BMS (Building Management Systems), GRMS/GRMG (Guest Room Management Systems), and PLC-based automation systems. Our solutions cover energy management, environmental controls, access integration, and centralized monitoring for commercial buildings and hotels." } },
+            { "@type": "Question", "name": "What types of properties do you serve?", "acceptedAnswer": { "@type": "Answer", "text": "We serve residential villas, apartment buildings, commercial offices, hotels & resorts, restaurants & cafés, retail shops, warehouses, industrial facilities, and recreational centers across Dubai and the wider UAE." } },
+            { "@type": "Question", "name": "Do you provide interior fit-out and renovation services?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, we handle turnkey interior fit-out projects including gypsum partitioning, false ceilings, painting, tiling, flooring, joinery, and complete renovation projects for both residential and commercial spaces." } },
+            { "@type": "Question", "name": "How can I request a quotation or consultation?", "acceptedAnswer": { "@type": "Answer", "text": "You can contact us via phone at +971 50 394 2123, email at info@buraqaltaybah.com, or fill out the inquiry form on our website. Our team typically responds within 24 hours with a detailed consultation and quotation." } }
+        ]
+    }
+    </script>
+
     <!-- ───────── FOOTER ───────── -->
     <footer class="footer">
         <div class="container">
@@ -569,6 +650,16 @@
 
         dots.forEach(dot => {
             dot.addEventListener('click', () => goTo(+dot.dataset.idx));
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.parentElement;
+                const isActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if (!isActive) item.classList.add('active');
+            });
         });
     </script>
 </body>
