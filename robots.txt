@@ -1,0 +1,7 @@
+# Buraq Al Taybah Engineering & Technical Services L.L.C
+# https://www.buraqaltaybah.com
+
+User-agent: *
+Allow: /
+
+Sitemap: https://www.buraqaltaybah.com/sitemap.xml
