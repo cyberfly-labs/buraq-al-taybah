@@ -283,7 +283,16 @@ ul {
 }
 
 .header.scrolled .logo img {
-    height: 80px;
+    height: 60px;
+}
+
+.logo-text {
+    color: var(--brand-white);
+    transition: color 0.3s ease;
+}
+
+.header.scrolled .logo-text {
+    color: var(--brand-blue-dark);
 }
 
 .header-container {

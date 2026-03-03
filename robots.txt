@@ -1,4 +1,4 @@
-# Buraq Al Taybah Engineering & Technical Services L.L.C
+# Buraq Al Taybah Technical Services L.L.C
 # https://www.buraqaltaybah.com
 
 User-agent: *
