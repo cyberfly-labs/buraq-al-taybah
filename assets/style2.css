@@ -1566,14 +1566,20 @@ ul {
 /* =====================
    Responsive
    ===================== */
+
+/* ── Tablet (≤ 1024px) ── */
 @media (max-width: 1024px) {
 
     .brief-grid,
     .why-grid,
-    .contact-strip-grid,
-    .footer-grid {
+    .contact-strip-grid {
         grid-template-columns: 1fr;
         gap: 3rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
     }
 
     .services-teaser-grid {
@@ -1581,7 +1587,7 @@ ul {
     }
 
     .vmv-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 
     .service-detail-card,
@@ -1595,43 +1601,562 @@ ul {
     }
 
     .blog-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .section {
+        padding: 4rem 0;
+    }
+
+    .contact-strip {
+        padding: 3rem 0;
+    }
+
+    .contact-strip-grid {
+        gap: 3rem;
+    }
+
+    .hero {
+        min-height: 560px;
+    }
+
+    .desktop-nav ul {
+        gap: 1.5rem;
+    }
+
+    .logo img {
+        height: 80px;
+    }
+
+    .header.scrolled .logo img {
+        height: 55px;
     }
 }
 
+/* ── Mobile (≤ 768px) ── */
 @media (max-width: 768px) {
+
+    /* ── Navigation ── */
     .desktop-nav {
-        display: none;
+        display: none !important;
     }
 
     .mobile-menu-btn {
         display: block;
     }
 
-    .services-teaser-grid,
-    .services-full-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .hero-title {
-        font-size: 2.5rem;
-    }
-
-    .form-row {
-        grid-template-columns: 1fr;
+    /* ── Top Bar ── */
+    .top-bar {
+        padding: 0.4rem 0;
     }
 
     .top-bar-container {
         flex-direction: column;
-        gap: 0.4rem;
+        gap: 0.3rem;
+        text-align: center;
+    }
+
+    .tb-left {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.75rem;
     }
 
     .tb-right {
         display: none;
     }
 
+    .tb-divider {
+        display: none;
+    }
+
+    /* ── Header / Logo ── */
+    .header-container {
+        padding: 0.4rem 0;
+    }
+
+    .logo img {
+        height: 55px !important;
+    }
+
+    .logo-text strong {
+        font-size: 1rem !important;
+    }
+
+    .logo-text span {
+        font-size: 0.65rem !important;
+    }
+
+    .header.scrolled .logo img {
+        height: 45px !important;
+    }
+
+    /* ── Hero ── */
+    .hero {
+        height: auto;
+        min-height: 85vh;
+        padding-top: 100px;
+        padding-bottom: 3rem;
+    }
+
+    .hero-title {
+        font-size: clamp(1.8rem, 7vw, 2.5rem);
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-badge {
+        font-size: 0.68rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+    }
+
+    /* ── Sections ── */
+    .section {
+        padding: 3rem 0;
+    }
+
+    .section-title {
+        font-size: clamp(1.4rem, 5vw, 2rem);
+    }
+
+    .mb-l {
+        margin-bottom: 2rem;
+    }
+
+    /* ── Grids → single column ── */
+    .services-teaser-grid,
+    .services-full-grid,
+    .vmv-grid,
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    /* ── Brief / About Section ── */
+    .brief-grid {
+        gap: 2rem;
+    }
+
     .brief-accent-card {
         bottom: -1rem;
         right: -0.5rem;
+        padding: 1rem 1.25rem;
+    }
+
+    .brief-accent-card .number {
+        font-size: 2rem;
+    }
+
+    .brief-accent-card .label {
+        font-size: 0.7rem;
+    }
+
+    /* ── Why Choose Us ── */
+    .why-grid {
+        gap: 2rem;
+    }
+
+    .feature-icon-wrap {
+        width: 42px;
+        height: 42px;
+    }
+
+    /* ── VMV Cards ── */
+    .vmv-card {
+        padding: 2rem 1.5rem;
+    }
+
+    /* ── Contact Strip ── */
+    .contact-strip {
+        padding: 2.5rem 0;
+    }
+
+    .contact-strip-grid {
+        gap: 2rem;
+    }
+
+    .contact-form {
+        padding: 1.5rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    /* ── Teaser Cards ── */
+    .teaser-img {
+        height: 180px;
+    }
+
+    .teaser-body {
+        padding: 1.25rem;
+    }
+
+    /* ── Service Detail Cards ── */
+    .sdc-body {
+        padding: 1.75rem;
+    }
+
+    .sdc-img img {
+        min-height: 200px;
+    }
+
+    /* ── Service Page ── */
+    .page-hero {
+        padding: 7rem 0 2.5rem;
+    }
+
+    .sp-content h2 {
+        font-size: 1.3rem;
+    }
+
+    /* ── FAQ ── */
+    .faq-question {
+        font-size: 0.95rem;
+        padding-right: 2rem;
+    }
+
+    .faq-answer p {
+        font-size: 0.9rem;
+    }
+
+    /* ── Footer ── */
+    .footer {
+        padding: 2rem 0 1rem;
+    }
+
+    .footer-brand img {
+        height: 70px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+
+    /* ── Buttons ── */
+    .btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.85rem;
+    }
+
+    .btn-lg {
+        padding: 0.9rem 2rem;
+        font-size: 0.9rem;
+    }
+
+    /* ── Blog Article ── */
+    .blog-article {
+        padding: 0 0.5rem;
+    }
+
+    .blog-article h2 {
+        font-size: 1.2rem;
+    }
+
+    /* ── Slider dots ── */
+    .slider-dots {
+        bottom: 1.5rem;
+    }
+}
+
+/* ── Small Mobile (≤ 480px) ── */
+@media (max-width: 480px) {
+
+    .container {
+        width: 92%;
+    }
+
+    /* ── Hero ── */
+    .hero {
+        min-height: 75vh;
+        padding-top: 85px;
+    }
+
+    .hero-title {
+        font-size: 1.6rem;
+        letter-spacing: -0.02em;
+    }
+
+    .hero-title br {
+        display: none;
+    }
+
+    .hero-subtitle {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+
+    .hero-badge {
+        font-size: 0.6rem;
+        padding: 0.3rem 0.75rem;
+    }
+
+    .hero-actions .btn {
+        max-width: 100%;
+        font-size: 0.82rem;
+        padding: 0.75rem 1.2rem;
+    }
+
+    /* ── Sections ── */
+    .section {
+        padding: 2.5rem 0;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+    }
+
+    .section-label {
+        font-size: 0.7rem;
+    }
+
+    .lead-text {
+        font-size: 0.95rem;
+    }
+
+    /* ── Header ── */
+    .logo img {
+        height: 45px !important;
+    }
+
+    .logo-text strong {
+        font-size: 0.9rem !important;
+    }
+
+    .logo-text span {
+        font-size: 0.6rem !important;
+    }
+
+    .header.scrolled .logo img {
+        height: 40px !important;
+    }
+
+    /* ── Top Bar ── */
+    .top-bar {
+        font-size: 0.72rem;
+    }
+
+    .tb-link {
+        font-size: 0.72rem;
+    }
+
+    /* ── Mobile Nav ── */
+    .mobile-nav {
+        width: 85%;
+        max-width: 300px;
+    }
+
+    /* ── Teaser Cards ── */
+    .teaser-img {
+        height: 160px;
+    }
+
+    .teaser-body h3 {
+        font-size: 1rem;
+    }
+
+    .teaser-body p {
+        font-size: 0.85rem;
+    }
+
+    /* ── VMV Cards ── */
+    .vmv-card {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .vmv-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .vmv-card h3 {
+        font-size: 1.05rem;
+    }
+
+    .vmv-card p,
+    .vmv-list li {
+        font-size: 0.85rem;
+    }
+
+    /* ── Contact Strip ── */
+    .contact-strip {
+        padding: 2rem 0;
+    }
+
+    .contact-form {
+        padding: 1.25rem;
+    }
+
+    .ci-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .ci-value {
+        font-size: 0.9rem;
+    }
+
+    /* ── Feature items ── */
+    .feature-item {
+        gap: 1rem;
+    }
+
+    .feature-item h4 {
+        font-size: 0.95rem;
+    }
+
+    .feature-item p {
+        font-size: 0.85rem;
+    }
+
+    .feature-icon-wrap {
+        width: 38px;
+        height: 38px;
+    }
+
+    /* ── Capability tags ── */
+    .cap-tag {
+        padding: 0.4rem 0.9rem;
+        font-size: 0.75rem;
+    }
+
+    .value-chip {
+        padding: 0.35rem 0.85rem;
+        font-size: 0.75rem;
+    }
+
+    /* ── Service detail cards ── */
+    .sdc-body {
+        padding: 1.25rem;
+    }
+
+    .sdc-body h3 {
+        font-size: 1.1rem;
+    }
+
+    .sdc-body ul li {
+        font-size: 0.88rem;
+    }
+
+    .sdc-img img {
+        min-height: 180px;
+    }
+
+    /* ── Service page ── */
+    .page-hero {
+        padding: 6rem 0 2rem;
+    }
+
+    .sp-content h2 {
+        font-size: 1.2rem;
+    }
+
+    .sp-content p {
+        font-size: 0.9rem;
+    }
+
+    .sp-list li {
+        font-size: 0.88rem;
+    }
+
+    /* ── Buttons ── */
+    .btn {
+        padding: 0.7rem 1.25rem;
+        font-size: 0.82rem;
+    }
+
+    .btn-lg {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.85rem;
+    }
+
+    /* ── FAQ ── */
+    .faq-question {
+        font-size: 0.88rem;
+        padding: 1rem 2rem 1rem 0;
+    }
+
+    .faq-answer p {
+        font-size: 0.85rem;
+    }
+
+    /* ── Footer ── */
+    .footer-brand img {
+        height: 55px;
+    }
+
+    .footer-brand p {
+        font-size: 0.82rem;
+    }
+
+    .footer-col h4 {
+        font-size: 0.8rem;
+    }
+
+    .footer-col ul li a {
+        font-size: 0.85rem;
+    }
+
+    .footer-bottom {
+        font-size: 0.75rem;
+    }
+
+    /* ── Blog ── */
+    .blog-card-body {
+        padding: 1.25rem;
+    }
+
+    .blog-card-body h3 {
+        font-size: 1rem;
+    }
+
+    .blog-card-body p {
+        font-size: 0.82rem;
+    }
+
+    .blog-article h2 {
+        font-size: 1.1rem;
+    }
+
+    .blog-article h3 {
+        font-size: 1rem;
+    }
+
+    .blog-article p {
+        font-size: 0.9rem;
+    }
+
+    /* ── Brief / About accent ── */
+    .brief-accent-card {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        margin-top: -1rem;
+        border-radius: 4px;
+    }
+
+    .brief-accent-card .number {
+        font-size: 1.75rem;
     }
 }
