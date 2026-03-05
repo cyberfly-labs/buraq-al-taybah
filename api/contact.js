@@ -20,20 +20,25 @@ module.exports = async function handler(req, res) {
         return;
     }
 
-    // Create SMTP transporter
+    // Create SMTP transporter (Microsoft 365)
     const transporter = nodemailer.createTransport({
         host: "smtp.office365.com",
         port: 587,
-        secure: false, // STARTTLS
+        secure: false,
+        requireTLS: true,
         auth: {
             user: process.env.SMTP_USER,
             pass: process.env.SMTP_PASS,
+        },
+        tls: {
+            ciphers: "SSLv3",
+            minVersion: "TLSv1.2",
         },
     });
 
     // Build email
     const mailOptions = {
-        from: `"Buraq Al Taybah Website" <${process.env.SMTP_USER}>`,
+        from: process.env.SMTP_USER,
         to: "info@buraqaltaybah.com",
         replyTo: email,
         subject: `New Inquiry from ${name}`,
@@ -74,7 +79,7 @@ module.exports = async function handler(req, res) {
         res.status(200).json({ success: true, message: "Message sent successfully." });
     } catch (err) {
         console.error("Email send error:", err);
-        res.status(500).json({ error: "Failed to send message. Please try again later." });
+        res.status(500).json({ error: "Failed to send message. Please try again later.", detail: err.message });
     }
 };
 
