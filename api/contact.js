@@ -1,48 +1,52 @@
-const nodemailer = require("nodemailer");
+const { Client } = require("@microsoft/microsoft-graph-client");
+const { TokenCredentialAuthenticationProvider } = require("@microsoft/microsoft-graph-client/authProviders/azureTokenCredentials");
+const { ClientSecretCredential } = require("@azure/identity");
+require("isomorphic-fetch");
 
 module.exports = async function handler(req, res) {
-    // Handle CORS preflight
-    if (req.method === "OPTIONS") {
-        res.status(200).end();
-        return;
-    }
+  // Handle CORS preflight
+  if (req.method === "OPTIONS") {
+    res.status(200).end();
+    return;
+  }
 
-    if (req.method !== "POST") {
-        res.status(405).json({ error: "Method not allowed" });
-        return;
-    }
+  if (req.method !== "POST") {
+    res.status(405).json({ error: "Method not allowed" });
+    return;
+  }
 
-    const { name, phone, email, message } = req.body || {};
+  const { name, phone, email, message } = req.body || {};
 
-    // Validate required fields
-    if (!name || !email || !message) {
-        res.status(400).json({ error: "Name, email, and message are required." });
-        return;
-    }
+  // Validate required fields
+  if (!name || !email || !message) {
+    res.status(400).json({ error: "Name, email, and message are required." });
+    return;
+  }
 
-    // Create SMTP transporter (Microsoft 365)
-    const transporter = nodemailer.createTransport({
-        host: "smtp.office365.com",
-        port: 587,
-        secure: false,
-        requireTLS: true,
-        auth: {
-            user: process.env.SMTP_USER,
-            pass: process.env.SMTP_PASS,
-        },
-        tls: {
-            ciphers: "SSLv3",
-            minVersion: "TLSv1.2",
-        },
-    });
+  // Set up the Azure AD client credentials
+  const credential = new ClientSecretCredential(
+    process.env.AZURE_TENANT_ID,
+    process.env.AZURE_CLIENT_ID,
+    process.env.AZURE_CLIENT_SECRET
+  );
 
-    // Build email
-    const mailOptions = {
-        from: process.env.SMTP_USER,
-        to: "info@buraqaltaybah.com",
-        replyTo: email,
-        subject: `New Inquiry from ${name}`,
-        html: `
+  // Initialize the Graph API Client
+  const authProvider = new TokenCredentialAuthenticationProvider(credential, {
+    scopes: ["https://graph.microsoft.com/.default"],
+  });
+
+  const client = Client.initWithMiddleware({
+    debugLogging: false,
+    authProvider,
+  });
+
+  // Build the email message
+  const sendMail = {
+    message: {
+      subject: `New Inquiry from ${name}`,
+      body: {
+        contentType: "HTML",
+        content: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <div style="background: #0b2c4d; color: #fff; padding: 20px 24px; border-radius: 8px 8px 0 0;">
           <h2 style="margin: 0; font-size: 20px;">📩 New Website Inquiry</h2>
@@ -72,22 +76,43 @@ module.exports = async function handler(req, res) {
         </div>
       </div>
     `,
-    };
+      },
+      toRecipients: [
+        {
+          emailAddress: {
+            address: "info@buraqaltaybah.com",
+          },
+        },
+      ],
+      replyTo: [
+        {
+          emailAddress: {
+            address: email,
+          },
+        },
+      ],
+    },
+    saveToSentItems: "false",
+  };
 
-    try {
-        await transporter.sendMail(mailOptions);
-        res.status(200).json({ success: true, message: "Message sent successfully." });
-    } catch (err) {
-        console.error("Email send error:", err);
-        res.status(500).json({ error: "Failed to send message. Please try again later.", detail: err.message });
-    }
+  try {
+    // Send mail via Microsoft Graph API
+    // Replace with the user ID or userPrincipalName of the sender
+    const senderUserId = process.env.SMTP_USER; // e.g., "info@buraqaltaybah.com"
+    await client.api(`/users/${senderUserId}/sendMail`).post(sendMail);
+
+    res.status(200).json({ success: true, message: "Message sent successfully." });
+  } catch (err) {
+    console.error("Email send error:", err);
+    res.status(500).json({ error: "Failed to send message. Please try again later.", detail: err.message });
+  }
 };
 
 function escapeHtml(str) {
-    return String(str)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
